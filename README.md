@@ -1,5 +1,5 @@
 # Deploy PostgresDB with DiskANN on Azure
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FPostgreSQLFlexibleServerPMs%2FDiskANN-demo%2Frefs%2Fheads%2Fmain%2Fpostgres-infra%2Ftemplate.json%3Ftoken%3DGHSAT0AAAAAACWLYZZ4B3PS7OJMP5FQGBPEZX4GP3Q)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2FDiskANN-demo%2Frefs%2Fheads%2Fmain%2Fsetup%2Fpostgres-infra%2Ftemplate.json%3F)
 
 This will create a Postgres Database with all the necessary extensions installed.
 

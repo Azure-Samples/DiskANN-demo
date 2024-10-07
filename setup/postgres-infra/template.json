@@ -2,108 +2,95 @@
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "administratorLogin": {
-            "type": "string"
-        },
-        "administratorLoginPassword": {
-            "type": "securestring"
+        "serverName": {
+            "value": "demo-diskann"
         },
         "location": {
-            "type": "string"
-        },
-        "serverName": {
-            "type": "string"
+            "value": "eastus"
         },
         "serverEdition": {
-            "type": "string"
+            "value": "Burstable"
         },
         "storageSizeGB": {
-            "type": "int"
+            "value": 32
         },
         "haEnabled": {
-            "type": "string",
-            "defaultValue": "Disabled"
-        },
-        "availabilityZone": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "standbyAvailabilityZone": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "version": {
-            "type": "string"
-        },
-        "tags": {
-            "type": "object",
-            "defaultValue": {}
-        },
-        "firewallRules": {
-            "type": "object",
-            "defaultValue": {}
-        },
-        "storageAutogrow": {
-            "type": "string",
-            "defaultValue": "Disabled"
+            "value": "Disabled"
         },
         "backupRetentionDays": {
-            "type": "int"
+            "value": 7
         },
         "geoRedundantBackup": {
-            "type": "string"
+            "value": "Disabled"
+        },
+        "availabilityZone": {
+            "value": ""
         },
         "vmName": {
-            "type": "string",
-            "defaultValue": "Standard_D4s_v3"
+            "value": "Standard_B1ms"
         },
-        "identityData": {
-            "type": "object",
-            "defaultValue": {}
+        "standbyAvailabilityZone": {
+            "value": ""
         },
-        "dataEncryptionData": {
-            "type": "object",
-            "defaultValue": {}
-        },
-        "apiVersion": {
-            "type": "string",
-            "defaultValue": "2022-12-01"
-        },
-        "aadEnabled": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "aadData": {
-            "type": "object",
-            "defaultValue": {}
-        },
-        "authConfig": {
-            "type": "object",
-            "defaultValue": {}
+        "firewallRules": {
+            "value": {
+                "rules": [
+                    {
+                        "name": "AllowAllAzureServicesAndResourcesWithinAzureIps_2024-10-1_10-26-0",
+                        "endIPAddress": "0.0.0.0",
+                        "startIPAddress": "0.0.0.0"
+                    },
+                    {
+                        "name": "AllowAll_2024-10-1_10-25-24",
+                        "startIPAddress": "0.0.0.0",
+                        "endIPAddress": "255.255.255.255"
+                    }
+                ]
+            }
         },
         "network": {
-            "type": "object",
-            "defaultValue": {}
+            "value": {
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        "tags": {
+            "value": {}
+        },
+        "version": {
+            "value": "16"
+        },
+        "administratorLogin": {
+            "value": "admin123"
+        },
+        "administratorLoginPassword": {
+            "value": null
+        },
+        "apiVersion": {
+            "value": "2023-06-01-preview"
+        },
+        "aadEnabled": {
+            "value": true
+        },
+        "aadData": {
+            "value": {
+                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+                "principalName": "abeomorogbe@microsoft.com",
+                "principalType": "User",
+                "objectId": "a9c3ed4d-1cb1-48e3-a725-0aa6f2005b77"
+            }
+        },
+        "authConfig": {
+            "value": {
+                "activeDirectoryAuth": "Enabled",
+                "passwordAuth": "Enabled",
+                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+            }
+        },
+        "storageAutogrow": {
+            "value": "Disabled"
         },
         "iopsTier": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "storageIops": {
-            "type": "int",
-            "defaultValue": 0
-        },
-        "throughput": {
-            "type": "int",
-            "defaultValue": 0
-        },
-        "storageType": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "guid": {
-            "type": "string",
-            "defaultValue": "[newGuid()]"
+            "value": "P4"
         }
     },
     "variables": {
