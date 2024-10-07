@@ -71,19 +71,10 @@
         "aadEnabled": {
             "value": true
         },
-        "aadData": {
-            "value": {
-                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-                "principalName": "abeomorogbe@microsoft.com",
-                "principalType": "User",
-                "objectId": "a9c3ed4d-1cb1-48e3-a725-0aa6f2005b77"
-            }
-        },
         "authConfig": {
             "value": {
                 "activeDirectoryAuth": "Enabled",
-                "passwordAuth": "Enabled",
-                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+                "passwordAuth": "Enabled"
             }
         },
         "storageAutogrow": {

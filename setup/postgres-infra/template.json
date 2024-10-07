@@ -2,38 +2,65 @@
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "serverName": {
-            "value": "demo-diskann"
+        "administratorLogin": {
+            "type": "string",
+            "defaultValue": "diskann",
+            "metadata": {
+                "description": "Admin user for Managed Instance"
+            }
+        },
+        "administratorLoginPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Admin user password - must be 10-128 characters, must contain 3 of uppercase, lowercase, numbers and non-alphanumeric characters, and cannot contain all or part of the login name"
+            }
         },
         "location": {
-            "value": "eastus"
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources"
+            }
         },
-        "serverEdition": {
-            "value": "Burstable"
+        "serverName": {
+            "type": "string",
+            "defaultValue": "diskann-demo",
+            "metadata": {
+                "description": "Admin user for Managed Instance"
+            }
         },
         "storageSizeGB": {
-            "value": 32
+            "type": "int",
+            "defaultValue": 32,
+            "metadata": {
+                "description": "Amount of Storage in GB for this instance"
+            }
         },
-        "haEnabled": {
-            "value": "Disabled"
+        "version": {
+            "type": "string",
+            "defaultValue": "16"
         },
-        "backupRetentionDays": {
-            "value": 7
+        "serverEdition": {
+            "type": "string",
+            "defaultValue": "Burstable"
         },
-        "geoRedundantBackup": {
-            "value": "Disabled"
-        },
-        "availabilityZone": {
-            "value": ""
+        "tags": {
+            "type": "object",
+            "defaultValue": {},
+            "metadata": {
+                "description": "Tags for the PostgreSQL resource."
+            }
         },
         "vmName": {
-            "value": "Standard_B1ms"
-        },
-        "standbyAvailabilityZone": {
-            "value": ""
+            "type": "string",
+            "defaultValue": "Standard_D4s_v3",
+            "metadata": {
+                "description": "Name of the virtual machine"
+            }
         },
         "firewallRules": {
-            "value": {
+            "type": "object",
+            "defaultValue": {
                 "rules": [
                     {
                         "name": "AllowAllAzureServicesAndResourcesWithinAzureIps_2024-10-1_10-26-0",
@@ -48,49 +75,77 @@
                 ]
             }
         },
-        "network": {
-            "value": {
-                "publicNetworkAccess": "Enabled"
-            }
-        },
-        "tags": {
-            "value": {}
-        },
-        "version": {
-            "value": "16"
-        },
-        "administratorLogin": {
-            "value": "admin123"
-        },
-        "administratorLoginPassword": {
-            "value": null
+        "guid": {
+            "type": "string",
+            "defaultValue": "[newGuid()]"
         },
         "apiVersion": {
-            "value": "2023-06-01-preview"
+            "type": "string",
+            "defaultValue": "2022-12-01"
         },
         "aadEnabled": {
-            "value": true
+            "type": "bool",
+            "defaultValue": false
         },
         "aadData": {
-            "value": {
-                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-                "principalName": "abeomorogbe@microsoft.com",
-                "principalType": "User",
-                "objectId": "a9c3ed4d-1cb1-48e3-a725-0aa6f2005b77"
-            }
+            "type": "object",
+            "defaultValue": {}
         },
         "authConfig": {
-            "value": {
-                "activeDirectoryAuth": "Enabled",
-                "passwordAuth": "Enabled",
-                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
-            }
+            "type": "object",
+            "defaultValue": {}
         },
-        "storageAutogrow": {
-            "value": "Disabled"
+        "network": {
+            "type": "object",
+            "defaultValue": {}
+        },
+        "identityData": {
+            "type": "object",
+            "defaultValue": {}
+        },
+        "dataEncryptionData": {
+            "type": "object",
+            "defaultValue": {}
+        },
+        "haEnabled": {
+            "type": "string",
+            "defaultValue": "Disabled"
+        },
+        "availabilityZone": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "standbyAvailabilityZone": {
+            "type": "string",
+            "defaultValue": ""
         },
         "iopsTier": {
-            "value": "P4"
+            "type": "string",
+            "defaultValue": "P4"
+        },
+        "storageIops": {
+            "type": "int",
+            "defaultValue": 0
+        },
+        "throughput": {
+            "type": "int",
+            "defaultValue": 0
+        },
+        "storageType": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "storageAutogrow": {
+            "type": "string",
+            "defaultValue": "Disabled"
+        },
+        "backupRetentionDays": {
+            "type": "int",
+            "defaultValue": 7
+        },
+        "geoRedundantBackup": {
+            "type": "string",
+            "defaultValue": "Disabled"
         }
     },
     "variables": {
