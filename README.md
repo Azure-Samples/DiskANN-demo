@@ -5,6 +5,10 @@ We're thrilled to announce the preview of DiskANN, a leading vector indexing alg
 
 https://github.com/Azure-Samples/DiskANN-demo/raw/refs/heads/main/assets/DiskANN_demo_for_blog.mp4
 
+
+https://github.com/user-attachments/assets/d70414f5-2535-48f4-b8d4-6caa35e6fa96
+
+
 [Sample Website](https://diskann-demo-dwgxbdfpgrakcmgf.westus2-01.azurewebsites.net/). This sample application show a sample AirBNB dataset search page:
 * It illustrate the **improved recall** of using DiskANN vs using HNSW. 
 * When a filter is apply you will notice `HNSW index` **doesn't return** the same amount of results as `DiskANN` or `No Index`.
