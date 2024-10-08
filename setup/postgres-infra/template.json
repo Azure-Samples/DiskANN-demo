@@ -53,7 +53,7 @@
         },
         "vmName": {
             "type": "string",
-            "defaultValue": "Standard_D4s_v3",
+            "defaultValue": "Standard_B1ms",
             "metadata": {
                 "description": "Name of the virtual machine"
             }
