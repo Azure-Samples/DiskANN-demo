@@ -12,6 +12,8 @@ https://github.com/user-attachments/assets/6866effa-2bc5-44e0-aaee-d824241a8d0e
 # Table of Content
 * [Documentation](#documentation)
 * [Getting started](#getting-started)
+    * [Enroll in the `pg_diskann` Preview Feature](#enroll-in-the-pg_diskann-preview-feature)
+    * [Enable `pg_diskann` extension](#enable-pg_diskann-extension)
     * [Setup Seattle AirBnb Data](#setup-seattle-airbnb-data-and-test-diskann)
     *  [Build Sample Application Locally](#build-sample-application-locally)
 * [Explore Indexes with Python Notebook](#explore-indexes-with-python-notebook)
@@ -30,7 +32,14 @@ Make sure the following tools are installed:
 * [Python 3.10+](https://www.python.org/downloads/)
 * [PostgreSQL 16+ and PSQL](https://www.postgresql.org/download/)
 * [Git](https://git-scm.com/downloads)
-    
+
+## Enroll in the `pg_diskann` Preview Feature
+Follow Microsoft documentation for [enrolling in DiskANN preview](https://review.learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgdiskann?branch=pr-en-us-388#enable-pg_diskann-extension)
+
+## Enable `pg_diskann` extension
+
+Follow Microsoft documentation for [enabling DiskANN](https://review.learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgdiskann?branch=pr-en-us-388#enable-pg_diskann-extension)
+
 ## Setup Seattle AirBnb Data and test DiskANN
 This demo app will show you how DiskANN Index works better that HNSW.
 
