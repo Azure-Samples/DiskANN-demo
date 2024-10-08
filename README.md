@@ -3,7 +3,7 @@
 
 We're thrilled to announce the preview of DiskANN, a leading vector indexing algorithm, on Azure Database for PostgreSQL - Flexible Server! Developed by [Microsoft Research](https://www.microsoft.com/en-us/research/project/project-akupara-approximate-nearest-neighbor-search-for-large-scale-semantic-search/) and used extensively at Microsoft in global services such as Bing and Microsoft 365, DiskANN enables developers to build highly accurate, performant and scalable Generative AI applications surpassing pgvector’s HNSW and IVFFlat in both latency and accuracy. DiskANN also overcomes a long-standing limitation of pgvector in filtered vector search, where it occasionally [returns incorrect results](https://github.com/pgvector/pgvector/tree/103ac50f1a90b47a72003e8e8628a55ec372f202?tab=readme-ov-file#why-are-there-less-results-for-a-query-after-adding-an-hnsw-index).
 
-https://github.com/user-attachments/assets/d70414f5-2535-48f4-b8d4-6caa35e6fa96
+https://github.com/user-attachments/assets/6866effa-2bc5-44e0-aaee-d824241a8d0e
 
 [Sample Website](https://diskann-demo-dwgxbdfpgrakcmgf.westus2-01.azurewebsites.net/). This sample application show a sample AirBNB dataset search page:
 * It illustrate the **improved recall** of using DiskANN vs using HNSW. 
