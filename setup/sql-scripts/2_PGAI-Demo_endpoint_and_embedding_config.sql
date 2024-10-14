@@ -6,7 +6,7 @@ Date: 8/26/2024
 -- SHOW server_version;
 
 -- Check installed extensions
-SHOW azure.extensions
+SHOW azure.extensions;
 --or
 SELECT * FROM pg_available_extensions
 WHERE name IN ('azure_ai','vector', 'pg_diskann');
@@ -35,5 +35,5 @@ CREATE TABLE listings_hnsw AS TABLE listings;
 CREATE INDEX listing_cosine_hnsw ON listings_hnsw USING hnsw (description_vector vector_cosine_ops);
 
 -- Create the diskann index and table
-CREATE TABLE listings_diskann AS TABLE listings_search;
+CREATE TABLE listings_diskann AS TABLE listings;
 CREATE INDEX listing_cosine_diskann ON listings_diskann USING diskann (description_vector vector_cosine_ops);

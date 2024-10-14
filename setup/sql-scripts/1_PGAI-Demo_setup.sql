@@ -6,7 +6,7 @@ Date: 8/26/2024
 -- SHOW server_version;
 
 -- Create sample database
--- CREATE DATABASE pgai;
+-- CREATE DATABASE airbnb;
 
 DROP TABLE IF EXISTS temp_calendar;
 DROP TABLE IF EXISTS temp_listings;
@@ -114,10 +114,3 @@ FROM temp_calendar;
 -- Create the extensions in the pgai database
 CREATE EXTENSION vector;
 CREATE EXTENSION pg_diskann CASCADE;
-
-CREATE TABLE listings_search (
-    listing_id int,
-    name varchar(50),
-    summary varchar(2000),
-    description varchar(2000),
-    description_vector vector(1536));

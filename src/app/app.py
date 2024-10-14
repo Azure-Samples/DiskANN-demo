@@ -56,7 +56,7 @@ def handler_search_listings(indices, date, price, ask):
 	WITH listing_cte AS
 	(
 		SELECT l.listing_id, name, price, date, summary, description, description_vector
-		FROM listings_search l
+		FROM listings l
 		INNER JOIN calendar c ON l.listing_id = c.listing_id
 		WHERE c.date = %s AND c.available = 't' AND c.price < %s
 	)
@@ -71,7 +71,7 @@ def handler_search_listings(indices, date, price, ask):
 	WITH listing_cte AS
 	(
 		SELECT l.listing_id, name, c.price, c.date, summary, description, description_vector
-		FROM listings_search_hnsw l
+		FROM listings_hnsw l
 		INNER JOIN calendar c ON l.listing_id = c.listing_id
 		WHERE c.date = %s AND c.available = 't' AND c.price < %s
 	)
@@ -85,7 +85,7 @@ def handler_search_listings(indices, date, price, ask):
 	WITH listing_cte AS
 	(
 		SELECT l.listing_id, name, c.price, c.date, summary, description, description_vector
-		FROM listings_search_diskann l
+		FROM listings_diskann l
 		INNER JOIN calendar c ON l.listing_id = c.listing_id
 		WHERE c.date = %s AND c.available = 't' AND c.price < %s
 	)
@@ -152,9 +152,9 @@ def render_search():
                  on_click=handler_search_listings, args=(st.session_state.index_selection, st.session_state.checkin_date, st.session_state.price_range[1], st.session_state.user_category_query))
 
         st.write("---")
-        render_cta_link(url="https://twitter.com/abeomor", label="X", font_awesome_icon="fa-twitter")
-        render_cta_link(url="https://linkedin.com/in/abeomor", label="LinkedIn", font_awesome_icon="fa-linkedin")
-        render_cta_link(url="https://github.com/AbeOmor", label="GitHub", font_awesome_icon="fa-github")
+        render_cta_link(url="https://aka.ms/pg-diskann-docs", label="Docs", font_awesome_icon="fa-book")
+        render_cta_link(url="https://aka.ms/pg-diskann-blog", label="Blog", font_awesome_icon="fa-windows")
+        render_cta_link(url="https://aka.ms/pg-diskann-demo", label="GitHub", font_awesome_icon="fa-github")
 
 def render_search_result():
     """
