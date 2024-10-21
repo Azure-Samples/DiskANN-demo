@@ -114,3 +114,12 @@ FROM temp_calendar;
 -- Create the extensions in the pgai database
 CREATE EXTENSION vector;
 CREATE EXTENSION pg_diskann CASCADE;
+CREATE EXTENSION postgis; 
+
+-- Add columns for location data
+ALTER TABLE listings
+ADD COLUMN listing_location geometry(point, 4326);
+
+-- Update listings table to utilize postgis
+UPDATE listings
+SET listing_location = ST_SetSRID(ST_Point(longitude, latitude), 4326);
