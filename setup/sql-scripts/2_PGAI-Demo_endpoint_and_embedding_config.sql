@@ -20,7 +20,6 @@ CREATE EXTENSION azure_ai;
 -- Setup Azure OpenAI endpoint
 select azure_ai.set_setting('azure_openai.endpoint', '');
 select azure_ai.set_setting('azure_openai.subscription_key', '');
-select azure_ai.get_setting('azure_openai.endpoint');
 
 -- Add vector - should take about 5 mins if Azure openAI and Flex are in same region
 ALTER TABLE listings
@@ -28,7 +27,8 @@ ADD COLUMN description_vector vector(1536) --OPEN AI embeddings are 1536 dimensi
 GENERATED ALWAYS AS (
 	azure_openai.create_embeddings (
 	'text-embedding-3-small', -- example deployment name in Azure OpenAI which CONTAINS text-embedding-ADA-003-small-model
-	name || description || summary)::vector) STORED; -- TEXT strings concatenated AND sent TO Azure OpenAI
+	name || description || summary,
+	max_attempts => 5, retry_delay_ms => 500)::vector) STORED; -- TEXT strings concatenated AND sent TO Azure OpenAI
 
 -- Create the diskann index and table
 CREATE TABLE listings_hnsw AS TABLE listings;

@@ -17,11 +17,6 @@ CREATE TABLE temp_listings (data jsonb);
 CREATE TABLE temp_reviews (data jsonb);
 
 -- poplulate the sample data
--- execute from psql local prompt
-\COPY temp_calendar (data) FROM 'calendar.json';
-\COPY temp_listings (data) FROM 'listings.json';
-\COPY temp_reviews (data) FROM 'reviews.json';
-
 -- populate data from local machine
 \COPY temp_calendar (data) FROM 'setup/data/calendar.json';
 \COPY temp_listings (data) FROM 'setup/data/listings.json';

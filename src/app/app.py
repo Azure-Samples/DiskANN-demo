@@ -13,16 +13,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import time
-st.set_page_config(page_title="SEA AirBNB", layout="wide", initial_sidebar_state="expanded")
+
+st.set_page_config(
+    page_title="Seattle AirBNB Rentals Search with DiskANN",
+    page_icon="🏠",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 # UI text strings
 page_title = "Seattle Airbnb Rentals Listing"
-page_helper = "Search SEA Rentals! The Streamlit app uses cosine similarity to semantically match your query with Airbnb listings and find matching properties in our database"
-empty_search_helper = "Select a neighborhood in Seattle, and enter a search term to get started."
+page_helper = "Search SEA Rentals! The Streamlit app uses vector search to match your query with Airbnb listings and find matching properties in our database"
+empty_search_helper = "👈 Enter a search query and filters to get started."
 semantic_search_header = "What are you looking for?"
 semantic_search_placeholder = "House with a beach view, pet-friendly, near downtown"
 search_label = "Search for listings"
 venue_list_header = "Listing details"
+
 
 @st.cache_resource
 def get_db_connection():
@@ -123,6 +130,9 @@ def handler_search_listings(indices, date, price, ask):
             st.session_state.query_time = end_time - start_time
             st.session_state.suggested_listings = pd.DataFrame(results, columns=["Listing ID", "Name", "Price", "Date", "Summary", "Description"])
 
+    conn.close()
+            
+
 # UI elements
 def render_cta_link(url, label, font_awesome_icon):
     st.markdown('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">', unsafe_allow_html=True)
@@ -135,9 +145,12 @@ def render_search():
     Render the search form in the sidebar.
     """
     search_disabled = True
+    get_db_connection.clear()
     with st.sidebar:
 
-        st.selectbox(label="Index", options=indices, index=0, key="index_selection")
+        st.header("Search Listings")
+
+        st.selectbox(label="Index", options=indices, index=2, key="index_selection")
 
         st.slider(label="Price Range", min_value=0, max_value=100, value=(0, 70), step=10, key="price_range")
 
@@ -160,13 +173,10 @@ def render_search_result():
     """
     Render the search results on the main content area.
     """
-    col1 = st.container()
-    col1.write(f"Found {len(st.session_state.suggested_listings)} listings.")
-    col1.write(f"Query time: {st.session_state.query_time:.2f} seconds")
+    st.subheader(f"Found {len(st.session_state.suggested_listings)} listings.")
+    st.subheader(f"Query time: {st.session_state.query_time:.2f} seconds")
 
-
-    col1.table(st.session_state.suggested_listings)
-
+    st.dataframe(st.session_state.suggested_listings)
 
 indices = ['No Index', 'HNSW Index', 'DiskANN Index']
 
@@ -174,9 +184,30 @@ render_search()
 
 st.title(page_title)
 st.write(page_helper)
+
+if st.session_state.index_selection == "DiskANN Index":
+    st.subheader("Why use DiskANN Vector Index?")
+    st.markdown("""
+    * **Scalability**: DiskANN is optimized for large datasets, making it ideal for handling millions of vectors.
+    * **Accuracy**: DiskANN uses Iterative post filtering to enhance the accuracy of filtered vector search results without compromising on speed or precision.
+    * **Low Latency**: The DiskANN graph index construction makes it very efficient during search, minimizing the number of SSD reads to achieve high throughput and low latency.
+    * **Integration**: Seamlessly integrates with Azure Database for PostgreSQL, leveraging the power and flexibility of PostgreSQL.
+
+    """)
+
+if st.session_state.index_selection == "HNSW Index":
+    st.subheader("The Filtered Vector Search Problem in HNSW on pgvector <0.8.0")
+    st.write("""
+    When using the HNSW index, long-standing limitation of pgvector HNSW with filtered vector search is it will occasionally returns incorrect results. 
+    This is not ideal for production application that require high accuracy. This issue is fixed in `vector` version 0.8.0 and later, [see extension versions available of Azure PostgreSQL](https://learn.microsoft.com/en-us/azure/postgresql/extensions/concepts-extensions-by-engine?pivots=postgresql-17).
+    More details can be found in the [DiskANN blog](https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-diskann-vector-index-in-azure-database-for-postgresql/4261192)
+    """)
+
 st.write("---")
 
 if "suggested_listings" not in st.session_state:
-    st.write(empty_search_helper)
+    st.subheader(empty_search_helper)
+    st.write("Example query:")
+    st.code(semantic_search_placeholder)
 else:
     render_search_result()

@@ -43,18 +43,33 @@ Follow Microsoft documentation for [enabling DiskANN](https://review.learn.micro
 ## Setup Seattle AirBnb Data and test DiskANN
 This demo app will show you how DiskANN Index works better that HNSW.
 
-### 0. Update your .env file
-Update your .env with the following:
+### 0. Set up Git Repo and Update your .env file
 
-```bash
-AZURE_OPENAI_API_KEY ="***sample***key****"
-AZURE_OPENAI_ENDPOINT="https://sample.openai.azure.com/"
-AZURE_PG_CONNECTION="dbname={DB_NAME} host={HOST} port=5432 sslmode=require user={USER_NAME} password={PASSWORD}"
-```
+1. In a Shell prompt, enter the following to clone the GitHub repo containing exercise resources:
+
+    ```
+        git clone https://github.com/Azure-Samples/DiskANN-demo.git
+    ```
+
+    Enter the repo directory
+
+    ```
+    cd DiskANN-demo
+    ```
+
+2. Update your .env with the following:
+
+    ```bash
+    AZURE_OPENAI_API_KEY ="***sample***key****"
+    AZURE_OPENAI_ENDPOINT="https://sample.openai.azure.com/"
+    AZURE_PG_CONNECTION="dbname={DB_NAME} host={HOST} port=5432 sslmode=require user={USER_NAME} password={PASSWORD}"
+    ```
 
 ### 1. Set up Data
 
-Run commands in the file `setup/sql-scripts/1_PGAI-Demo_setup.sql` in `psql` or your favorite Postgres Editor
+Connect to the database and run commands in the file `setup/sql-scripts/1_PGAI-Demo_setup.sql` in `psql` or your favorite Postgres Editor
+
+> **NOTE:** This command has to be run from the root directory of the repo. In order to correctly locate the `setup/sql-scripts/1_PGAI-Demo_setup.sql` file.
 
 **If running from `psql`:**
 ```sql
@@ -65,10 +80,17 @@ Run commands in the file `setup/sql-scripts/1_PGAI-Demo_setup.sql` in `psql` or 
 
 Run commands in the file `setup/sql-scripts/2_PGAI-Demo_endpoint_and_embedding_config.sql` in `psql` or your favorite Postgres Editor
 
+> **NOTE:** You will need to update **Line 21-22**, with out OpenAI credentials. 
+```sql
+select azure_ai.set_setting('azure_openai.endpoint', '');
+select azure_ai.set_setting('azure_openai.subscription_key', '');
+```
+
 **If running from `psql`:**
 ```sql
 \i setup/sql-scripts/2_PGAI-Demo_endpoint_and_embedding_config.sql
 ```
+> **TIP:** This will take around 2-5 minutes to run.
 
 ### 3. Test out sample vector queries
 
@@ -98,7 +120,6 @@ source .diskann/bin/activate
 ```
 
 ```bash
-cd src
 pip install -r requirements.txt
 ```
 
