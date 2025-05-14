@@ -1,7 +1,7 @@
 # DiskANN Vector Index in Azure Database for PostgreSQL
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2FDiskANN-demo%2Frefs%2Fheads%2Fmain%2Fsetup%2Fpostgres-infra%2Ftemplate.json%3F)
 
-We're thrilled to announce the preview of DiskANN, a leading vector indexing algorithm, on Azure Database for PostgreSQL - Flexible Server! Developed by [Microsoft Research](https://www.microsoft.com/en-us/research/project/project-akupara-approximate-nearest-neighbor-search-for-large-scale-semantic-search/) and used extensively at Microsoft in global services such as Bing and Microsoft 365, DiskANN enables developers to build highly accurate, performant and scalable Generative AI applications surpassing pgvector’s HNSW and IVFFlat in both latency and accuracy. DiskANN also overcomes a long-standing limitation of pgvector in filtered vector search, where it occasionally [returns incorrect results](https://github.com/pgvector/pgvector/tree/103ac50f1a90b47a72003e8e8628a55ec372f202?tab=readme-ov-file#why-are-there-less-results-for-a-query-after-adding-an-hnsw-index).
+We're thrilled to announce DiskANN, a leading vector indexing algorithm, on Azure Database for PostgreSQL - Flexible Server! Developed by [Microsoft Research](https://www.microsoft.com/en-us/research/project/project-akupara-approximate-nearest-neighbor-search-for-large-scale-semantic-search/) and used extensively at Microsoft in global services such as Bing and Microsoft 365, DiskANN enables developers to build highly accurate, performant and scalable Generative AI applications surpassing pgvector’s HNSW and IVFFlat in both latency and accuracy. DiskANN also overcomes a long-standing limitation of pgvector in filtered vector search, where it occasionally [returns incorrect results](https://github.com/pgvector/pgvector/tree/103ac50f1a90b47a72003e8e8628a55ec372f202?tab=readme-ov-file#why-are-there-less-results-for-a-query-after-adding-an-hnsw-index).
 
 https://github.com/user-attachments/assets/6866effa-2bc5-44e0-aaee-d824241a8d0e
 
@@ -12,7 +12,6 @@ https://github.com/user-attachments/assets/6866effa-2bc5-44e0-aaee-d824241a8d0e
 # Table of Content
 * [Documentation](#documentation)
 * [Getting started](#getting-started)
-    * [Enroll in the `pg_diskann` Preview Feature](#enroll-in-the-pg_diskann-preview-feature)
     * [Enable `pg_diskann` extension](#enable-pg_diskann-extension)
     * [Setup Seattle AirBnb Data](#setup-seattle-airbnb-data-and-test-diskann)
     *  [Build Sample Application Locally](#build-sample-application-locally)
@@ -32,9 +31,6 @@ Make sure the following tools are installed:
 * [Python 3.10+](https://www.python.org/downloads/)
 * [PostgreSQL 16+ and PSQL](https://www.postgresql.org/download/)
 * [Git](https://git-scm.com/downloads)
-
-## Enroll in the `pg_diskann` Preview Feature
-Follow Microsoft documentation for [enrolling in DiskANN preview](https://review.learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgdiskann?branch=pr-en-us-388#enable-pg_diskann-extension)
 
 ## Enable `pg_diskann` extension
 
