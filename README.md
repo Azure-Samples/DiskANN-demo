@@ -34,7 +34,7 @@ Make sure the following tools are installed:
 
 ## Enable `pg_diskann` extension
 
-Follow Microsoft documentation for [enabling DiskANN](https://review.learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgdiskann?branch=pr-en-us-388#enable-pg_diskann-extension)
+Follow Microsoft documentation for [enabling DiskANN](https://aka.ms/pg-diskann-docs)
 
 ## Setup Seattle AirBnb Data and test DiskANN
 This demo app will show you how DiskANN Index works better that HNSW.
