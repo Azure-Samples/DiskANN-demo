@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/6866effa-2bc5-44e0-aaee-d824241a8d0e
 
 [Sample Website](https://diskann-demo-dwgxbdfpgrakcmgf.westus2-01.azurewebsites.net/). This sample application show a sample AirBNB dataset search page:
 * It illustrate the **improved recall** of using DiskANN vs using HNSW. 
-* When a filter is apply you will notice `HNSW index` **doesn't return** the same amount of results as `DiskANN` or `No Index`.
+* When a filter is applied you will notice `HNSW index` **doesn't return** the same amount of results as `DiskANN` or `No Index`.
 
 # Table of Content
 * [Documentation](#documentation)
